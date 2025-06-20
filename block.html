@@ -3,98 +3,87 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Trang bị chặn - FocusForge</title>
+        <title>Website đã bị chặn - FocusForge</title>
         <link rel="stylesheet" href="styles/block.css" />
     </head>
     <body>
-        <div class="container">
-            <div class="icon-container">
-                <div class="focus-icon">🎯</div>
-            </div>
+        <div class="block-container">
+            <div class="block-content">
+                <!-- Logo and Title -->
+                <div class="header">
+                    <img src="icons/icon48.png" alt="FocusForge" class="logo" />
+                    <h1>🎯 FocusForge</h1>
+                </div>
 
-            <div class="content">
-                <h1>Hãy quay lại làm việc nhé! 💪</h1>
-                <p class="message">
-                    Trang này đã bị chặn để giúp bạn duy trì sự tập trung.
-                </p>
+                <!-- Block Message -->
+                <div class="block-message">
+                    <h2>Website đã bị chặn</h2>
+                    <p class="site-info">
+                        Không thể truy cập trang
+                        <strong id="blockedSite">example.com</strong>
+                    </p>
+                    <p class="motivation" id="motivationText">
+                        💪 Bạn đang rèn luyện sự tập trung. Hãy tiếp tục!
+                    </p>
+                </div>
 
-                <div class="stats-card">
+                <!-- Stats -->
+                <div class="stats-box">
                     <div class="stat-item">
-                        <span class="stat-number" id="todayAttempts">0</span>
+                        <span class="stat-number" id="todayBlocks">0</span>
                         <span class="stat-label">lần cố truy cập hôm nay</span>
                     </div>
-                    <div class="motivational-text" id="motivationalText">
-                        Bạn đang làm rất tốt! 🌟
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="backBtn">
+                        ← Quay lại trang trước
+                    </button>
+                    <button class="btn btn-secondary" id="openPopupBtn">
+                        ⚙️ Mở FocusForge
+                    </button>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="quick-links">
+                    <p>Thay vào đó, hãy thử:</p>
+                    <div class="link-grid">
+                        <a href="https://docs.google.com" class="quick-link"
+                            >📝 Google Docs</a
+                        >
+                        <a href="https://gmail.com" class="quick-link"
+                            >📧 Gmail</a
+                        >
+                        <a href="https://calendar.google.com" class="quick-link"
+                            >📅 Calendar</a
+                        >
+                        <a href="https://github.com" class="quick-link"
+                            >💻 GitHub</a
+                        >
                     </div>
                 </div>
 
-                <div class="action-section">
-                    <div class="time-info">
-                        <p>
-                            Focus Mode sẽ kết thúc lúc:
-                            <strong id="endTime">--:--</strong>
-                        </p>
-                        <p>
-                            Thời gian còn lại:
-                            <strong id="remainingTime">--:--</strong>
-                        </p>
-                    </div>
-
-                    <div
-                        class="emergency-access"
-                        id="emergencySection"
-                        style="display: none"
-                    >
-                        <button class="btn-emergency" id="emergencyBtn">
-                            🚨 Truy cập khẩn cấp
-                        </button>
-                        <div
-                            class="emergency-form"
-                            id="emergencyForm"
-                            style="display: none"
-                        >
-                            <p>Vui lòng nhập lý do khẩn cấp:</p>
-                            <input
-                                type="text"
-                                id="emergencyReason"
-                                placeholder="Ví dụ: Cần kiểm tra tin nhắn quan trọng..."
-                            />
-                            <div class="form-actions">
-                                <button
-                                    class="btn btn-danger"
-                                    id="confirmEmergency"
-                                >
-                                    Xác nhận
-                                </button>
-                                <button
-                                    class="btn btn-secondary"
-                                    id="cancelEmergency"
-                                >
-                                    Hủy
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="alternatives">
-                        <h3>💡 Thay vào đó, bạn có thể:</h3>
-                        <ul>
-                            <li>Làm một bài tập thở sâu</li>
-                            <li>Uống một ly nước</li>
-                            <li>Đứng dậy và vận động nhẹ</li>
-                            <li>Xem lại mục tiêu công việc hôm nay</li>
-                        </ul>
-                    </div>
+                <!-- Emergency Access -->
+                <div class="emergency-section">
+                    <button class="emergency-btn" id="emergencyBtn">
+                        🚨 Truy cập khẩn cấp
+                    </button>
                 </div>
             </div>
+        </div>
 
-            <div class="footer">
-                <div class="brand">
-                    <strong>FocusForge</strong> - Rèn luyện sự tập trung
-                </div>
-                <div class="controls">
-                    <button class="btn-text" id="disableFocusBtn">
-                        Tắt Focus Mode
+        <!-- Emergency Modal -->
+        <div class="modal" id="emergencyModal">
+            <div class="modal-content">
+                <h3>🚨 Truy cập khẩn cấp</h3>
+                <p>Bạn có thực sự cần truy cập website này không?</p>
+                <div class="modal-buttons">
+                    <button class="btn btn-danger" id="confirmEmergency">
+                        Có, tôi cần truy cập
+                    </button>
+                    <button class="btn btn-secondary" id="cancelEmergency">
+                        Không, quay lại focus
                     </button>
                 </div>
             </div>
