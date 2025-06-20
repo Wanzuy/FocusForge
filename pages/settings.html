@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cài đặt - FocusForge</title>
+        <link rel="stylesheet" href="../styles/pages.css" />
+    </head>
+    <body>
+        <div class="container">
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="logo">
+                        <img
+                            src="../icons/icon32.png"
+                            alt="FocusForge"
+                            class="logo-icon"
+                        />
+                        <h1>FocusForge</h1>
+                    </div>
+                    <nav class="nav-tabs">
+                        <a href="manage.html" class="nav-tab"
+                            >Quản lý danh sách</a
+                        >
+                        <a href="schedule.html" class="nav-tab">Lịch trình</a>
+                        <a href="settings.html" class="nav-tab active"
+                            >Cài đặt</a
+                        >
+                        <a href="stats.html" class="nav-tab">Thống kê</a>
+                    </nav>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <div class="content-header">
+                    <h2>Cài đặt FocusForge</h2>
+                    <p>Tùy chỉnh các tính năng và hành vi của extension</p>
+                </div>
+
+                <div class="settings-sections">
+                    <!-- Security Settings -->
+                    <div class="settings-section">
+                        <h3>🔒 Bảo mật</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Khóa tắt bằng mật khẩu</h4>
+                                <p>Yêu cầu mật khẩu khi tắt Focus Mode</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input
+                                    type="checkbox"
+                                    id="passwordProtection"
+                                />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            class="setting-item"
+                            id="passwordSettings"
+                            style="display: none"
+                        >
+                            <div class="setting-info">
+                                <h4>Đặt mật khẩu</h4>
+                                <p>Mật khẩu để tắt Focus Mode</p>
+                            </div>
+                            <div class="password-input-group">
+                                <input
+                                    type="password"
+                                    id="currentPassword"
+                                    placeholder="Mật khẩu hiện tại"
+                                />
+                                <input
+                                    type="password"
+                                    id="newPassword"
+                                    placeholder="Mật khẩu mới"
+                                />
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Xác nhận mật khẩu"
+                                />
+                                <button
+                                    class="btn btn-sm btn-primary"
+                                    id="changePasswordBtn"
+                                >
+                                    Đổi mật khẩu
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Mindful Unlock</h4>
+                                <p>
+                                    Hiển thị câu hỏi khiến bạn suy nghĩ khi muốn
+                                    tắt
+                                </p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="mindfulUnlock" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Automation Settings -->
+                    <div class="settings-section">
+                        <h3>⚡ Tự động hóa</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Tự động bật Focus Mode</h4>
+                                <p>Tự động bật khi bắt đầu lịch trình</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="autoEnable" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Khởi động cùng trình duyệt</h4>
+                                <p>Kiểm tra lịch trình khi mở Chrome</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="startupCheck" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Settings -->
+                    <div class="settings-section">
+                        <h3>🚨 Truy cập khẩn cấp</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Cho phép truy cập khẩn cấp</h4>
+                                <p>Tạm tắt Focus Mode khi có việc khẩn cấp</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emergencyAccess" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Thời gian truy cập khẩn cấp</h4>
+                                <p>
+                                    Số phút được truy cập khi kích hoạt khẩn cấp
+                                </p>
+                            </div>
+                            <select id="emergencyDuration">
+                                <option value="5">5 phút</option>
+                                <option value="10">10 phút</option>
+                                <option value="15">15 phút</option>
+                                <option value="30">30 phút</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- UI Settings -->
+                    <div class="settings-section">
+                        <h3>🎨 Giao diện</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Hiển thị widget tập trung</h4>
+                                <p>
+                                    Widget nhỏ trên trang web khi Focus Mode bật
+                                </p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="showWidget" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Thông báo động viên</h4>
+                                <p>Hiển thị thông báo khuyến khích định kỳ</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input
+                                    type="checkbox"
+                                    id="motivationalMessages"
+                                />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Hiển thị thống kê trên badge</h4>
+                                <p>Số lần chặn trên icon extension</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="showBadge" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div class="settings-section">
+                        <h3>🔔 Thông báo</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Thông báo khi bắt đầu Focus</h4>
+                                <p>
+                                    Hiển thị thông báo khi Focus Mode được bật
+                                </p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notifyOnStart" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Thông báo khi kết thúc Focus</h4>
+                                <p>
+                                    Hiển thị thông báo khi Focus Mode được tắt
+                                </p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notifyOnEnd" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Thông báo nhắc nhở</h4>
+                                <p>Nhắc nhở động viên khi đang tập trung</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="reminderEnabled" />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Data Settings -->
+                    <div class="settings-section">
+                        <h3>💾 Dữ liệu</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Sao lưu cài đặt</h4>
+                                <p>Xuất tất cả cài đặt ra file</p>
+                            </div>
+                            <button
+                                class="btn btn-secondary"
+                                id="exportSettingsBtn"
+                            >
+                                Xuất cài đặt
+                            </button>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Khôi phục cài đặt</h4>
+                                <p>Nhập cài đặt từ file đã sao lưu</p>
+                            </div>
+                            <div class="file-input-group">
+                                <input
+                                    type="file"
+                                    id="importSettingsFile"
+                                    accept=".json"
+                                    style="display: none"
+                                />
+                                <button
+                                    class="btn btn-secondary"
+                                    id="importSettingsBtn"
+                                >
+                                    Chọn file
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Xóa dữ liệu thống kê</h4>
+                                <p>Xóa toàn bộ lịch sử thống kê</p>
+                            </div>
+                            <button class="btn btn-danger" id="clearStatsBtn">
+                                Xóa thống kê
+                            </button>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Đặt lại extension</h4>
+                                <p>Khôi phục về cài đặt mặc định</p>
+                            </div>
+                            <button
+                                class="btn btn-danger"
+                                id="resetExtensionBtn"
+                            >
+                                Đặt lại
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keyboard Shortcuts -->
+                    <div class="settings-section">
+                        <h3>⌨️ Phím tắt</h3>
+                        <div class="shortcuts-info">
+                            <div class="shortcut-item">
+                                <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+                                <kbd>F</kbd>
+                                <span>Bật/tắt Focus Mode nhanh</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+                                <kbd>S</kbd>
+                                <span>Xem thống kê nhanh</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <kbd>Esc</kbd>
+                                <span>Đóng form truy cập khẩn cấp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-footer">
+                    <div class="version-info">
+                        <p>FocusForge v1.0.0</p>
+                        <p>Tạo ra để giúp bạn tập trung tốt hơn</p>
+                    </div>
+                    <div class="footer-actions">
+                        <button class="btn btn-success" id="saveAllBtn">
+                            Lưu tất cả cài đặt
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="../js/settings.js"></script>
+    </body>
+</html>

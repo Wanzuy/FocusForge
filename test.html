@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Test FocusForge Extension</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                line-height: 1.6;
+            }
+            .test-item {
+                background: #f5f5f5;
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 5px;
+                border-left: 4px solid #4caf50;
+            }
+            .test-item.warning {
+                border-left-color: #ff9800;
+            }
+            .test-item.error {
+                border-left-color: #f44336;
+            }
+            button {
+                background: #4caf50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+            }
+            button:hover {
+                background: #45a049;
+            }
+            .status {
+                font-weight: bold;
+                margin-left: 10px;
+            }
+            .success {
+                color: #4caf50;
+            }
+            .error {
+                color: #f44336;
+            }
+            .warning {
+                color: #ff9800;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>🎯 FocusForge Extension Test</h1>
+        <p>
+            Trang này giúp bạn kiểm tra xem extension FocusForge có hoạt động
+            đúng không.
+        </p>
+
+        <div class="test-item">
+            <h3>1. Kiểm tra Extension được load</h3>
+            <p>
+                Extension FocusForge đã được cài đặt:
+                <span id="extensionStatus" class="status"
+                    >Đang kiểm tra...</span
+                >
+            </p>
+            <button onclick="checkExtension()">Kiểm tra lại</button>
+        </div>
+
+        <div class="test-item">
+            <h3>2. Kiểm tra Storage</h3>
+            <p>
+                Có thể lưu/đọc dữ liệu:
+                <span id="storageStatus" class="status">Đang kiểm tra...</span>
+            </p>
+            <button onclick="testStorage()">Test Storage</button>
+        </div>
+
+        <div class="test-item">
+            <h3>3. Kiểm tra Focus Mode</h3>
+            <p>
+                Focus Mode hiện tại:
+                <span id="focusStatus" class="status">Đang kiểm tra...</span>
+            </p>
+            <button onclick="toggleFocusMode()">Bật/Tắt Focus Mode</button>
+        </div>
+
+        <div class="test-item warning">
+            <h3>4. Test Blocked Sites</h3>
+            <p>Thử truy cập các link sau khi bật Focus Mode:</p>
+            <ul>
+                <li>
+                    <a href="https://facebook.com" target="_blank">Facebook</a>
+                </li>
+                <li>
+                    <a href="https://youtube.com" target="_blank">YouTube</a>
+                </li>
+                <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
+                <li><a href="https://reddit.com" target="_blank">Reddit</a></li>
+            </ul>
+            <p>
+                <strong>Kỳ vọng:</strong> Các trang trên sẽ bị chặn và hiển thị
+                trang block.html
+            </p>
+        </div>
+
+        <div class="test-item">
+            <h3>5. Kiểm tra Popup</h3>
+            <p>Click vào icon FocusForge trên thanh toolbar để mở popup.</p>
+            <p>
+                <strong>Kỳ vọng:</strong> Popup mở ra với giao diện đẹp và các
+                nút hoạt động
+            </p>
+        </div>
+
+        <div class="test-item">
+            <h3>6. Kiểm tra Keyboard Shortcuts</h3>
+            <p>Thử các phím tắt:</p>
+            <ul>
+                <li><kbd>Ctrl+Shift+F</kbd>: Bật/tắt Focus Mode</li>
+                <li><kbd>Ctrl+Shift+S</kbd>: Mở trang thống kê</li>
+                <li><kbd>Ctrl+Shift+M</kbd>: Mở trang quản lý</li>
+            </ul>
+        </div>
+
+        <div class="test-item">
+            <h3>7. Logs và Debug</h3>
+            <button onclick="showLogs()">Hiện Console Logs</button>
+            <button onclick="showStorageData()">Hiện Storage Data</button>
+            <pre
+                id="debugInfo"
+                style="
+                    background: #f0f0f0;
+                    padding: 10px;
+                    margin-top: 10px;
+                    display: none;
+                "
+            ></pre>
+        </div>
+
+        <script>
+            // Test functions
+            async function checkExtension() {
+                const status = document.getElementById("extensionStatus");
+                try {
+                    if (
+                        typeof chrome !== "undefined" &&
+                        chrome.runtime &&
+                        chrome.runtime.id
+                    ) {
+                        status.textContent = "✅ Đã cài đặt";
+                        status.className = "status success";
+                    } else {
+                        status.textContent = "❌ Chưa cài đặt";
+                        status.className = "status error";
+                    }
+                } catch (e) {
+                    status.textContent = "❌ Lỗi: " + e.message;
+                    status.className = "status error";
+                }
+            }
+
+            async function testStorage() {
+                const status = document.getElementById("storageStatus");
+                try {
+                    // Test write
+                    await chrome.storage.local.set({ test: "FocusForge Test" });
+                    // Test read
+                    const result = await chrome.storage.local.get(["test"]);
+                    if (result.test === "FocusForge Test") {
+                        status.textContent = "✅ Hoạt động tốt";
+                        status.className = "status success";
+                    } else {
+                        status.textContent = "❌ Không thể đọc dữ liệu";
+                        status.className = "status error";
+                    }
+                } catch (e) {
+                    status.textContent = "❌ Lỗi: " + e.message;
+                    status.className = "status error";
+                }
+            }
+
+            async function toggleFocusMode() {
+                const status = document.getElementById("focusStatus");
+                try {
+                    const result = await chrome.storage.local.get([
+                        "focusMode",
+                    ]);
+                    const newMode = !result.focusMode;
+                    await chrome.storage.local.set({ focusMode: newMode });
+
+                    status.textContent = newMode ? "🔴 BẬT" : "🟢 TẮT";
+                    status.className =
+                        "status " + (newMode ? "error" : "success");
+                } catch (e) {
+                    status.textContent = "❌ Lỗi: " + e.message;
+                    status.className = "status error";
+                }
+            }
+
+            async function showLogs() {
+                console.log("FocusForge Test - Checking logs...");
+                console.log("Extension ID:", chrome.runtime.id);
+                console.log("Manifest:", chrome.runtime.getManifest());
+            }
+
+            async function showStorageData() {
+                const debugInfo = document.getElementById("debugInfo");
+                try {
+                    const data = await chrome.storage.local.get(null);
+                    debugInfo.textContent = JSON.stringify(data, null, 2);
+                    debugInfo.style.display = "block";
+                } catch (e) {
+                    debugInfo.textContent = "Lỗi: " + e.message;
+                    debugInfo.style.display = "block";
+                }
+            }
+
+            // Auto-run tests when page loads
+            document.addEventListener("DOMContentLoaded", function () {
+                checkExtension();
+                testStorage();
+
+                // Check focus mode status
+                if (typeof chrome !== "undefined" && chrome.storage) {
+                    chrome.storage.local.get(["focusMode"], function (result) {
+                        const status = document.getElementById("focusStatus");
+                        status.textContent = result.focusMode
+                            ? "🔴 BẬT"
+                            : "🟢 TẮT";
+                        status.className =
+                            "status " +
+                            (result.focusMode ? "error" : "success");
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

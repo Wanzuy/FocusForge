@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Trang bị chặn - FocusForge</title>
+        <link rel="stylesheet" href="styles/block.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="icon-container">
+                <div class="focus-icon">🎯</div>
+            </div>
+
+            <div class="content">
+                <h1>Hãy quay lại làm việc nhé! 💪</h1>
+                <p class="message">
+                    Trang này đã bị chặn để giúp bạn duy trì sự tập trung.
+                </p>
+
+                <div class="stats-card">
+                    <div class="stat-item">
+                        <span class="stat-number" id="todayAttempts">0</span>
+                        <span class="stat-label">lần cố truy cập hôm nay</span>
+                    </div>
+                    <div class="motivational-text" id="motivationalText">
+                        Bạn đang làm rất tốt! 🌟
+                    </div>
+                </div>
+
+                <div class="action-section">
+                    <div class="time-info">
+                        <p>
+                            Focus Mode sẽ kết thúc lúc:
+                            <strong id="endTime">--:--</strong>
+                        </p>
+                        <p>
+                            Thời gian còn lại:
+                            <strong id="remainingTime">--:--</strong>
+                        </p>
+                    </div>
+
+                    <div
+                        class="emergency-access"
+                        id="emergencySection"
+                        style="display: none"
+                    >
+                        <button class="btn-emergency" id="emergencyBtn">
+                            🚨 Truy cập khẩn cấp
+                        </button>
+                        <div
+                            class="emergency-form"
+                            id="emergencyForm"
+                            style="display: none"
+                        >
+                            <p>Vui lòng nhập lý do khẩn cấp:</p>
+                            <input
+                                type="text"
+                                id="emergencyReason"
+                                placeholder="Ví dụ: Cần kiểm tra tin nhắn quan trọng..."
+                            />
+                            <div class="form-actions">
+                                <button
+                                    class="btn btn-danger"
+                                    id="confirmEmergency"
+                                >
+                                    Xác nhận
+                                </button>
+                                <button
+                                    class="btn btn-secondary"
+                                    id="cancelEmergency"
+                                >
+                                    Hủy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alternatives">
+                        <h3>💡 Thay vào đó, bạn có thể:</h3>
+                        <ul>
+                            <li>Làm một bài tập thở sâu</li>
+                            <li>Uống một ly nước</li>
+                            <li>Đứng dậy và vận động nhẹ</li>
+                            <li>Xem lại mục tiêu công việc hôm nay</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="brand">
+                    <strong>FocusForge</strong> - Rèn luyện sự tập trung
+                </div>
+                <div class="controls">
+                    <button class="btn-text" id="disableFocusBtn">
+                        Tắt Focus Mode
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/block.js"></script>
+    </body>
+</html>
